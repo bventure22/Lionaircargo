@@ -63,37 +63,44 @@
   }
   .section-title.light { color: var(--white); }
 
-  /* ─── TOP BAR ────────────────────────────────────────────── */
-  .topbar {
-    background: var(--navy); color: rgba(255,255,255,.75);
-    font-size: 12px; font-weight: 500; letter-spacing: .04em;
+  /* ─── UTILITY TABS ───────────────────────────────────────── */
+  .util-tabs {
+    background: var(--off);
+    border-bottom: 1px solid #E2E6ED;
   }
-  .topbar .container {
-    display: flex; align-items: center; justify-content: space-between;
-    height: 38px;
+  .util-tabs .container {
+    display: flex; align-items: center; justify-content: flex-end;
+    height: 36px; gap: 0;
   }
-  .topbar-left { display: flex; align-items: center; gap: 24px; }
-  .topbar-left svg { flex-shrink: 0; }
-  .topbar-right { display: flex; align-items: center; gap: 20px; }
-  .topbar-right a { color: rgba(255,255,255,.75); transition: color .2s; }
-  .topbar-right a:hover { color: var(--orange); }
-  .topbar-divider { width: 1px; height: 16px; background: rgba(255,255,255,.2); }
+  .util-tab {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 0 18px; height: 36px;
+    font-family: var(--font-display); font-size: 11px; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--navy);
+    border-right: 1px solid #E2E6ED;
+    transition: background .2s, color .2s;
+    white-space: nowrap; cursor: pointer;
+  }
+  .util-tab:first-child { border-left: 1px solid #E2E6ED; }
+  .util-tab:hover { background: var(--navy); color: var(--white); }
+  .util-tab.accent { background: var(--orange); color: var(--white); border-color: var(--orange); }
+  .util-tab.accent:hover { background: var(--orange-dk); }
 
   /* ─── HEADER ─────────────────────────────────────────────── */
   .site-header {
     position: sticky; top: 0; z-index: 1000;
     background: var(--white);
-    box-shadow: 0 1px 0 rgba(0,0,0,.08);
+    box-shadow: 0 2px 0 rgba(0,0,0,.07);
     transition: box-shadow .3s;
   }
-  .site-header.scrolled { box-shadow: 0 4px 24px rgba(0,46,93,.12); }
+  .site-header.scrolled { box-shadow: 0 6px 32px rgba(0,46,93,.14); }
   .header-inner {
     display: flex; align-items: center; justify-content: space-between;
-    height: 96px;
+    height: 120px;
   }
   /* Logo */
-  .logo { display: flex; align-items: center; gap: 12px; }
-  .logo img { height: 80px; width: auto; object-fit: contain; }
+  .logo { display: flex; align-items: center; }
+  .logo img { height: 108px; width: auto; object-fit: contain; display: block; }
   .logo-mark {
     width: 46px; height: 46px; background: var(--navy);
     display: flex; align-items: center; justify-content: center;
@@ -118,7 +125,7 @@
   .nav-item { position: relative; display: flex; align-items: center; }
   .nav-link {
     display: flex; align-items: center; gap: 5px;
-    padding: 0 18px; height: 96px;
+    padding: 0 18px; height: 120px;
     font-family: var(--font-display); font-size: 14px; font-weight: 700;
     letter-spacing: .06em; text-transform: uppercase; color: var(--navy);
     border-bottom: 3px solid transparent;
@@ -546,22 +553,15 @@
   <span class="preloader-label">Loading…</span>
 </div>
 
-<!-- ─── TOP BAR ──────────────────────────────────────────────────────── -->
-<div class="topbar">
+<!-- ─── UTILITY TABS ──────────────────────────────────────────────────── -->
+<div class="util-tabs">
   <div class="container">
-    <div class="topbar-left">
-      <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="rgba(255,255,255,.6)"/></svg>
-      Julius Nyerere International Airport, Dar es Salaam, Tanzania
-      <div class="topbar-divider"></div>
-      <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" fill="rgba(255,255,255,.6)"/></svg>
-      cargo@lionaircargo.co.tz
-    </div>
-    <div class="topbar-right">
-      <a href="#">Client Portal</a>
-      <div class="topbar-divider"></div>
-      <a href="#">EN</a>
-      <a href="#">SW</a>
-    </div>
+    <a href="#" class="util-tab">EN</a>
+    <a href="#" class="util-tab">SW</a>
+    <a href="#" class="util-tab">Client Portal</a>
+    <a href="#" class="util-tab">Our Network</a>
+    <a href="#" class="util-tab">News</a>
+    <a href="#quote" class="util-tab accent">Get a Quote</a>
   </div>
 </div>
 
