@@ -348,32 +348,6 @@
   .why-title { font-family: var(--font-display); font-size: 20px; font-weight: 800; text-transform: uppercase; color: var(--navy); margin-bottom: 10px; }
   .why-text { font-size: 14px; font-weight: 300; color: #5A6A7A; line-height: 1.75; }
 
-  /* ─── TRACK & TRACE ──────────────────────────────────────── */
-  .track-section {
-    background: var(--navy);
-    padding: 80px 0;
-    position: relative; overflow: hidden;
-  }
-  .track-section::before {
-    content: 'TRACK'; position: absolute;
-    font-family: var(--font-display); font-size: 220px; font-weight: 800;
-    color: rgba(255,255,255,.03); text-transform: uppercase;
-    top: 50%; left: 50%; transform: translate(-50%, -50%);
-    white-space: nowrap; pointer-events: none;
-  }
-  .track-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-  .track-copy p { font-size: 15px; font-weight: 300; color: rgba(255,255,255,.75); line-height: 1.75; margin-top: 18px; margin-bottom: 28px; }
-  .track-form { display: flex; gap: 0; }
-  .track-form input {
-    flex: 1; padding: 16px 20px; border: none; outline: none;
-    font-family: var(--font-body); font-size: 15px; background: rgba(255,255,255,.07);
-    color: var(--white); border: 1.5px solid rgba(255,255,255,.15);
-    border-right: none; transition: border-color .2s;
-  }
-  .track-form input::placeholder { color: rgba(255,255,255,.4); }
-  .track-form input:focus { border-color: var(--orange); }
-  .track-form button { padding: 16px 28px; font-size: 13px; }
-
   /* ─── GALLERY / PRESENCE ─────────────────────────────────── */
   .presence { padding: 100px 0; background: var(--off); }
   .presence-grid {
@@ -474,6 +448,55 @@
     text-transform: uppercase; color: rgba(255,255,255,.4);
   }
 
+  /* ─── PRELOADER ──────────────────────────────────────────── */
+  #preloader {
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--navy);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 28px;
+    transition: opacity .6s var(--ease), visibility .6s;
+  }
+  #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  .preloader-logo { display: flex; align-items: center; gap: 14px; }
+  .preloader-logo img { height: 54px; width: auto; object-fit: contain; }
+  .preloader-logo-text { display: flex; flex-direction: column; line-height: 1; }
+  .preloader-logo-name {
+    font-family: var(--font-display); font-size: 26px; font-weight: 800;
+    letter-spacing: .04em; color: var(--white); text-transform: uppercase;
+  }
+  .preloader-logo-sub {
+    font-family: var(--font-display); font-size: 11px; font-weight: 600;
+    letter-spacing: .22em; color: var(--orange); text-transform: uppercase; margin-top: 3px;
+  }
+  /* Ring spinner */
+  .preloader-ring {
+    position: relative; width: 64px; height: 64px;
+  }
+  .preloader-ring svg {
+    width: 64px; height: 64px;
+    animation: ringRotate 1.4s linear infinite;
+    transform-origin: center;
+  }
+  @keyframes ringRotate { to { transform: rotate(360deg); } }
+  .preloader-ring .track { fill: none; stroke: rgba(255,255,255,.1); stroke-width: 4; }
+  .preloader-ring .arc {
+    fill: none; stroke: var(--orange); stroke-width: 4;
+    stroke-linecap: round;
+    stroke-dasharray: 100 200;
+    animation: ringRotate 1.4s linear infinite, arcDash 1.4s ease-in-out infinite;
+  }
+  @keyframes arcDash {
+    0%   { stroke-dashoffset: 0; stroke-dasharray: 1 300; }
+    50%  { stroke-dashoffset: -60; stroke-dasharray: 120 180; }
+    100% { stroke-dashoffset: -240; stroke-dasharray: 1 300; }
+  }
+  .preloader-label {
+    font-family: var(--font-display); font-size: 11px; font-weight: 700;
+    letter-spacing: .25em; text-transform: uppercase; color: rgba(255,255,255,.45);
+    animation: preloaderPulse 1.4s ease-in-out infinite;
+  }
+  @keyframes preloaderPulse { 0%,100% { opacity: .45; } 50% { opacity: 1; } }
+
   /* ─── SCROLL ANIMATIONS ──────────────────────────────────── */
   [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
   [data-reveal].revealed { opacity: 1; transform: translateY(0); }
@@ -486,7 +509,7 @@
     .main-nav, .header-cta .btn-primary { display: none; }
     .hero-content { grid-template-columns: 1fr; }
     .hero-form-card { max-width: 480px; }
-    .about-inner, .track-inner, .network-inner { grid-template-columns: 1fr; gap: 40px; }
+    .about-inner, .network-inner { grid-template-columns: 1fr; gap: 40px; }
     .services-grid { grid-template-columns: 1fr 1fr; }
     .why-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -503,6 +526,24 @@
 </style>
 </head>
 <body>
+
+<!-- ─── PRELOADER ────────────────────────────────────────────────────── -->
+<div id="preloader">
+  <div class="preloader-logo">
+    <img src="images/logo.png" alt="Lion Air Cargo" />
+    <div class="preloader-logo-text">
+      <span class="preloader-logo-name">Lion Air Cargo</span>
+      <span class="preloader-logo-sub">Dar es Salaam · Tanzania</span>
+    </div>
+  </div>
+  <div class="preloader-ring">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <circle class="track" cx="32" cy="32" r="28"/>
+      <circle class="arc" cx="32" cy="32" r="28" transform="rotate(-90 32 32)"/>
+    </svg>
+  </div>
+  <span class="preloader-label">Loading…</span>
+</div>
 
 <!-- ─── TOP BAR ──────────────────────────────────────────────────────── -->
 <div class="topbar">
@@ -529,16 +570,7 @@
     <div class="header-inner">
       <!-- Logo -->
       <a href="#" class="logo">
-        <div class="logo-mark">
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-            <path d="M4 20L16 6l12 14" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M2 24h28M10 24l6-8 6 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="logo-text">
-          <span class="logo-name">Lion Air Cargo</span>
-          <span class="logo-sub">Dar es Salaam · Tanzania</span>
-        </div>
+        <img src="images/logo.png" alt="Lion Air Cargo Logo" style="height:54px; width:auto; object-fit:contain;" />
       </a>
 
       <!-- Navigation -->
@@ -631,7 +663,7 @@
 
       <!-- Header CTAs -->
       <div class="header-cta">
-        <a class="track-btn" href="#track">
+        <a class="track-btn" href="#">
           <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/></svg>
           Track Shipment
         </a>
@@ -886,27 +918,6 @@
   </div>
 </section>
 
-<!-- ─── TRACK & TRACE ────────────────────────────────────────────────── -->
-<section class="track-section" id="track">
-  <div class="container">
-    <div class="track-inner">
-      <div class="track-copy" data-reveal>
-        <span class="section-label" style="color: rgba(255,255,255,.5)">Shipment Tracking</span>
-        <h2 class="section-title light">Track Your<br>Cargo Live</h2>
-        <p>Enter your Air Waybill (AWB) or booking reference below for instant shipment status, location history, and estimated arrival.</p>
-        <div class="track-form">
-          <input type="text" placeholder="Enter AWB or Booking Reference…" id="trackInput" />
-          <button class="btn-primary" onclick="handleTrack()">Track →</button>
-        </div>
-        <div id="trackResult" style="margin-top:16px; font-size:13px; color:rgba(255,255,255,.6);"></div>
-      </div>
-      <div data-reveal data-reveal="delay-2">
-        <img src="https://images.unsplash.com/photo-1542296332-2e4473faf563?w=800&auto=format&fit=crop&q=80" alt="Air cargo tracking operations" style="width:100%; height:380px; object-fit:cover;" loading="lazy" />
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ─── GALLERY / PRESENCE ────────────────────────────────────────────── -->
 <section class="presence">
   <div class="container">
@@ -1014,16 +1025,7 @@
       <!-- Brand -->
       <div class="footer-brand">
         <a href="#" class="logo">
-          <div class="logo-mark">
-            <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
-              <path d="M4 20L16 6l12 14" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M2 24h28M10 24l6-8 6 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="logo-text">
-            <span class="logo-name" style="color:white;">Lion Air Cargo</span>
-            <span class="logo-sub">Dar es Salaam · Tanzania</span>
-          </div>
+          <img src="images/logo.png" alt="Lion Air Cargo Logo" style="height:50px; width:auto; object-fit:contain; filter:brightness(0) invert(1);" />
         </a>
         <p>Connecting Tanzania and East Africa to the world. Over 14 years of trusted freight solutions, delivered on time, every time.</p>
         <div class="footer-socials">
@@ -1107,6 +1109,13 @@
 
 <!-- ─── JAVASCRIPT ─────────────────────────────────────────────────────── -->
 <script>
+  /* ── Preloader ── */
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('preloader').classList.add('hidden');
+    }, 1200); // minimum display time so the animation is seen
+  });
+
   /* ── Sticky header shadow ── */
   const header = document.getElementById('header');
   window.addEventListener('scroll', () => {
@@ -1151,27 +1160,6 @@
       success.style.animation = 'slideUp .5s var(--ease) both';
     }, 2200);
   }
-
-  /* ── Track shipment ── */
-  function handleTrack() {
-    const val = document.getElementById('trackInput').value.trim();
-    const result = document.getElementById('trackResult');
-    if (!val) {
-      result.textContent = '⚠ Please enter a valid AWB or booking reference.';
-      result.style.color = 'rgba(255,102,0,.8)';
-      return;
-    }
-    result.textContent = '⏳ Looking up shipment ' + val + '…';
-    result.style.color = 'rgba(255,255,255,.6)';
-    setTimeout(() => {
-      result.innerHTML = '✅ <strong style="color:#fff">' + val + '</strong> — In Transit · Departed NBO · ETA Dar es Salaam: <strong style="color:#FF6600">Today 18:40 EAT</strong>';
-    }, 1800);
-  }
-
-  /* ── Enter key on track input ── */
-  document.getElementById('trackInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter') handleTrack();
-  });
 </script>
 </body>
 </html>
