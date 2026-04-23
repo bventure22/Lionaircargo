@@ -1,1 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lion Air Cargo — Global Freight Solutions from Dar es Salaam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ─── DESIGN TOKENS ─────────────────────────────────────── */
+  :root {
+    --orange:    #FF6600;
+    --orange-dk: #CC5200;
+    --navy:      #002E5D;
+    --navy-lt:   #003f80;
+    --white:     #FFFFFF;
+    --off:       #F4F5F7;
+    --mid:       #8A9BB0;
+    --dark:      #0D1B2A;
+    --font-display: 'Barlow Condensed', sans-serif;
+    --font-body:    'Barlow', sans-serif;
+    --ease: cubic-bezier(0.22,1,0.36,1);
+  }
 
+  /* ─── RESET ─────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); color: var(--dark); background: var(--white); overflow-x: hidden; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  img { display: block; max-width: 100%; }
+  button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+  /* ─── UTILITY ────────────────────────────────────────────── */
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--orange); color: var(--white);
+    font-family: var(--font-display); font-size: 14px; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase;
+    padding: 14px 28px; border: 2px solid var(--orange);
+    transition: background .25s, color .25s, transform .2s var(--ease);
+  }
+  .btn-primary:hover { background: var(--orange-dk); border-color: var(--orange-dk); transform: translateY(-2px); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--white);
+    font-family: var(--font-display); font-size: 14px; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase;
+    padding: 13px 28px; border: 2px solid rgba(255,255,255,.55);
+    transition: background .25s, border-color .25s, transform .2s var(--ease);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,.1); border-color: var(--white); transform: translateY(-2px); }
+  .section-label {
+    display: inline-block; font-family: var(--font-display);
+    font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: var(--font-display); font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800; line-height: 1.05; color: var(--navy); text-transform: uppercase;
+  }
+  .section-title.light { color: var(--white); }
+
+  /* ─── TOP BAR ────────────────────────────────────────────── */
+  .topbar {
+    background: var(--navy); color: rgba(255,255,255,.75);
+    font-size: 12px; font-weight: 500; letter-spacing: .04em;
+  }
+  .topbar .container {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 38px;
+  }
+  .topbar-left { display: flex; align-items: center; gap: 24px; }
+  .topbar-left svg { flex-shrink: 0; }
+  .topbar-right { display: flex; align-items: center; gap: 20px; }
+  .topbar-right a { color: rgba(255,255,255,.75); transition: color .2s; }
+  .topbar-right a:hover { color: var(--orange); }
+  .topbar-divider { width: 1px; height: 16px; background: rgba(255,255,255,.2); }
+
+  /* ─── HEADER ─────────────────────────────────────────────── */
+  .site-header {
+    position: sticky; top: 0; z-index: 1000;
+    background: var(--white);
+    box-shadow: 0 1px 0 rgba(0,0,0,.08);
+    transition: box-shadow .3s;
+  }
+  .site-header.scrolled { box-shadow: 0 4px 24px rgba(0,46,93,.12); }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 76px;
+  }
+  /* Logo */
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo-mark {
+    width: 46px; height: 46px; background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .logo-mark::after {
+    content: ''; position: absolute;
+    bottom: 0; left: 0; right: 0; height: 4px; background: var(--orange);
+  }
+  .logo-text { display: flex; flex-direction: column; line-height: 1; }
+  .logo-name {
+    font-family: var(--font-display); font-size: 22px; font-weight: 800;
+    letter-spacing: .02em; color: var(--navy); text-transform: uppercase;
+  }
+  .logo-sub {
+    font-family: var(--font-display); font-size: 10px; font-weight: 600;
+    letter-spacing: .25em; color: var(--orange); text-transform: uppercase;
+  }
+
+  /* Nav */
+  .main-nav { display: flex; align-items: stretch; gap: 0; height: 100%; }
+  .nav-item { position: relative; display: flex; align-items: center; }
+  .nav-link {
+    display: flex; align-items: center; gap: 5px;
+    padding: 0 18px; height: 76px;
+    font-family: var(--font-display); font-size: 14px; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase; color: var(--navy);
+    border-bottom: 3px solid transparent;
+    transition: color .2s, border-color .2s;
+    white-space: nowrap;
+  }
+  .nav-link:hover, .nav-item:hover .nav-link { color: var(--orange); border-bottom-color: var(--orange); }
+  .nav-chevron { transition: transform .25s var(--ease); }
+  .nav-item:hover .nav-chevron { transform: rotate(180deg); }
+
+  /* Mega-menu */
+  .mega-menu {
+    position: absolute; top: calc(100% + 1px); left: 50%; transform: translateX(-50%);
+    min-width: 560px; background: var(--white);
+    box-shadow: 0 20px 60px rgba(0,46,93,.15);
+    border-top: 3px solid var(--orange);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transform: translateX(-50%) translateY(12px);
+    transition: opacity .25s var(--ease), transform .25s var(--ease), visibility .25s;
+  }
+  .nav-item:hover .mega-menu { opacity: 1; visibility: visible; pointer-events: all; transform: translateX(-50%) translateY(0); }
+  .mega-inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; padding: 32px; }
+  .mega-col { padding: 0 24px 0 0; }
+  .mega-col:last-child { padding-right: 0; }
+  .mega-col-title {
+    font-family: var(--font-display); font-size: 11px; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase; color: var(--orange);
+    margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--off);
+  }
+  .mega-links a {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 0; font-size: 13.5px; font-weight: 500; color: var(--navy);
+    border-bottom: 1px solid transparent;
+    transition: color .2s, padding-left .2s;
+  }
+  .mega-links a::before { content: '→'; font-size: 11px; color: var(--orange); opacity: 0; transition: opacity .2s; }
+  .mega-links a:hover { color: var(--orange); padding-left: 6px; }
+  .mega-links a:hover::before { opacity: 1; }
+
+  /* Header CTA */
+  .header-cta { display: flex; align-items: center; gap: 12px; margin-left: 24px; }
+  .track-btn {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border: 1.5px solid rgba(0,46,93,.25);
+    font-family: var(--font-display); font-size: 13px; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase; color: var(--navy);
+    transition: border-color .2s, color .2s;
+  }
+  .track-btn:hover { border-color: var(--orange); color: var(--orange); }
+
+  /* ─── HERO ───────────────────────────────────────────────── */
+  .hero {
+    position: relative; height: 92vh; min-height: 620px; max-height: 900px;
+    overflow: hidden; display: flex; align-items: flex-end;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1800&auto=format&fit=crop&q=90');
+    background-size: cover; background-position: center 40%;
+    transform: scale(1.04);
+    animation: heroZoom 12s ease-out forwards;
+  }
+  @keyframes heroZoom { to { transform: scale(1); } }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(0,20,46,.92) 0%,
+      rgba(0,20,46,.7) 50%,
+      rgba(0,20,46,.25) 100%
+    );
+  }
+  .hero-overlay-stripe {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 5px;
+    background: linear-gradient(to right, var(--orange) 0%, var(--orange) 60%, transparent 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 40px 80px;
+    max-width: 1280px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 420px; gap: 60px; align-items: end;
+  }
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
+  }
+  .hero-eyebrow-line { width: 40px; height: 2px; background: var(--orange); }
+  .hero-eyebrow span {
+    font-family: var(--font-display); font-size: 12px; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--orange);
+  }
+  .hero-headline {
+    font-family: var(--font-display); font-size: clamp(48px, 6vw, 88px);
+    font-weight: 800; line-height: .95; text-transform: uppercase; color: var(--white);
+    margin-bottom: 22px;
+  }
+  .hero-headline em { color: var(--orange); font-style: normal; }
+  .hero-sub {
+    font-size: 16px; font-weight: 300; color: rgba(255,255,255,.8);
+    max-width: 480px; line-height: 1.65; margin-bottom: 36px;
+  }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero-stats { display: flex; gap: 32px; margin-top: 48px; }
+  .hero-stat-num {
+    font-family: var(--font-display); font-size: 36px; font-weight: 800; color: var(--orange); line-height: 1;
+  }
+  .hero-stat-lbl { font-size: 11px; font-weight: 500; color: rgba(255,255,255,.6); letter-spacing: .08em; text-transform: uppercase; margin-top: 4px; }
+
+  /* Quote form card */
+  .hero-form-card {
+    background: var(--white);
+    padding: 36px 32px;
+    animation: slideUp .8s .3s var(--ease) both;
+  }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .form-title {
+    font-family: var(--font-display); font-size: 20px; font-weight: 800;
+    text-transform: uppercase; color: var(--navy); margin-bottom: 4px;
+  }
+  .form-subtitle { font-size: 12.5px; color: var(--mid); margin-bottom: 24px; }
+  .form-row { margin-bottom: 14px; }
+  .form-row label {
+    display: block; font-size: 10px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--navy); margin-bottom: 6px;
+  }
+  .form-row input,
+  .form-row select {
+    width: 100%; padding: 11px 14px;
+    border: 1.5px solid #DDE3EB; font-family: var(--font-body); font-size: 14px; color: var(--dark);
+    background: var(--white); outline: none; appearance: none;
+    transition: border-color .2s;
+  }
+  .form-row input:focus, .form-row select:focus { border-color: var(--orange); }
+  .form-row select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23002E5D' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+  .form-row-half { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-submit { width: 100%; padding: 15px; margin-top: 6px; }
+  .spinner {
+    display: none; width: 20px; height: 20px;
+    border: 2px solid rgba(255,255,255,.4); border-top-color: #fff;
+    border-radius: 50%; animation: spin .6s linear infinite; margin: 0 auto;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .form-success { display: none; text-align: center; padding: 16px 0; }
+  .form-success-icon { font-size: 42px; margin-bottom: 12px; }
+  .form-success h3 { font-family: var(--font-display); font-size: 18px; font-weight: 800; color: var(--navy); text-transform: uppercase; margin-bottom: 8px; }
+  .form-success p { font-size: 13.5px; color: #5A6A7A; line-height: 1.6; }
+
+  /* ─── TICKER ─────────────────────────────────────────────── */
+  .ticker {
+    background: var(--orange); overflow: hidden; white-space: nowrap; height: 44px;
+    display: flex; align-items: center;
+  }
+  .ticker-track { display: inline-flex; animation: ticker 30s linear infinite; }
+  .ticker-track span {
+    font-family: var(--font-display); font-size: 13px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--white);
+    padding: 0 40px;
+  }
+  .ticker-track span::before { content: '✦'; margin-right: 40px; opacity: .6; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ─── ABOUT STRIP ────────────────────────────────────────── */
+  .about-strip { background: var(--navy); padding: 70px 0; }
+  .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-copy .section-label { color: rgba(255,255,255,.5); }
+  .about-copy p { font-size: 15px; font-weight: 300; color: rgba(255,255,255,.75); line-height: 1.75; margin-top: 20px; margin-bottom: 32px; }
+  .about-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .about-fact {
+    background: rgba(255,255,255,.05); padding: 28px;
+    border-top: 3px solid var(--orange);
+    transition: background .25s;
+  }
+  .about-fact:hover { background: rgba(255,255,255,.09); }
+  .fact-num { font-family: var(--font-display); font-size: 44px; font-weight: 800; color: var(--orange); line-height: 1; }
+  .fact-lbl { font-size: 12px; font-weight: 500; color: rgba(255,255,255,.6); letter-spacing: .08em; text-transform: uppercase; margin-top: 6px; }
+
+  /* ─── SERVICES ───────────────────────────────────────────── */
+  .services { padding: 100px 0; background: var(--off); }
+  .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+  .service-card {
+    background: var(--white); overflow: hidden;
+    position: relative; cursor: pointer;
+    transition: transform .3s var(--ease);
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,46,93,.12); }
+  .service-img { height: 220px; overflow: hidden; }
+  .service-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+  .service-card:hover .service-img img { transform: scale(1.07); }
+  .service-body { padding: 28px 28px 32px; }
+  .service-icon {
+    width: 48px; height: 48px; background: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+  }
+  .service-icon svg { width: 24px; height: 24px; }
+  .service-name {
+    font-family: var(--font-display); font-size: 22px; font-weight: 800;
+    text-transform: uppercase; color: var(--navy); margin-bottom: 10px;
+  }
+  .service-desc { font-size: 14px; font-weight: 300; color: #5A6A7A; line-height: 1.7; margin-bottom: 22px; }
+  .service-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-display); font-size: 12px; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--orange);
+    transition: gap .2s;
+  }
+  .service-card:hover .service-link { gap: 10px; }
+  .service-orange-bar {
+    height: 4px; background: var(--orange);
+    width: 0; transition: width .4s var(--ease);
+  }
+  .service-card:hover .service-orange-bar { width: 100%; }
+
+  /* ─── WHY US ─────────────────────────────────────────────── */
+  .why { padding: 100px 0; background: var(--white); }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-top: 60px; }
+  .why-feature {
+    padding: 40px; border-left: 3px solid var(--off);
+    transition: border-color .25s, background .25s;
+  }
+  .why-feature:hover { border-left-color: var(--orange); background: var(--off); }
+  .why-num {
+    font-family: var(--font-display); font-size: 56px; font-weight: 800;
+    color: var(--off); line-height: 1; margin-bottom: 16px;
+    transition: color .25s;
+  }
+  .why-feature:hover .why-num { color: rgba(255,102,0,.12); }
+  .why-title { font-family: var(--font-display); font-size: 20px; font-weight: 800; text-transform: uppercase; color: var(--navy); margin-bottom: 10px; }
+  .why-text { font-size: 14px; font-weight: 300; color: #5A6A7A; line-height: 1.75; }
+
+  /* ─── TRACK & TRACE ──────────────────────────────────────── */
+  .track-section {
+    background: var(--navy);
+    padding: 80px 0;
+    position: relative; overflow: hidden;
+  }
+  .track-section::before {
+    content: 'TRACK'; position: absolute;
+    font-family: var(--font-display); font-size: 220px; font-weight: 800;
+    color: rgba(255,255,255,.03); text-transform: uppercase;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    white-space: nowrap; pointer-events: none;
+  }
+  .track-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .track-copy p { font-size: 15px; font-weight: 300; color: rgba(255,255,255,.75); line-height: 1.75; margin-top: 18px; margin-bottom: 28px; }
+  .track-form { display: flex; gap: 0; }
+  .track-form input {
+    flex: 1; padding: 16px 20px; border: none; outline: none;
+    font-family: var(--font-body); font-size: 15px; background: rgba(255,255,255,.07);
+    color: var(--white); border: 1.5px solid rgba(255,255,255,.15);
+    border-right: none; transition: border-color .2s;
+  }
+  .track-form input::placeholder { color: rgba(255,255,255,.4); }
+  .track-form input:focus { border-color: var(--orange); }
+  .track-form button { padding: 16px 28px; font-size: 13px; }
+
+  /* ─── GALLERY / PRESENCE ─────────────────────────────────── */
+  .presence { padding: 100px 0; background: var(--off); }
+  .presence-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 260px 260px;
+    gap: 3px; margin-top: 56px;
+  }
+  .presence-cell { overflow: hidden; position: relative; cursor: pointer; }
+  .presence-cell:first-child { grid-row: 1 / 3; }
+  .presence-cell img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+  .presence-cell:hover img { transform: scale(1.06); }
+  .presence-cell-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 40px 24px 20px;
+    background: linear-gradient(to top, rgba(0,20,46,.8) 0%, transparent 100%);
+    opacity: 0; transition: opacity .3s;
+  }
+  .presence-cell:hover .presence-cell-label { opacity: 1; }
+  .presence-cell-label span {
+    font-family: var(--font-display); font-size: 16px; font-weight: 800;
+    text-transform: uppercase; color: var(--white); letter-spacing: .08em;
+  }
+
+  /* ─── NETWORK ────────────────────────────────────────────── */
+  .network { padding: 100px 0; background: var(--white); }
+  .network-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .network-img { position: relative; }
+  .network-img img { width: 100%; height: 420px; object-fit: cover; }
+  .network-badge {
+    position: absolute; bottom: -20px; right: -20px;
+    width: 120px; height: 120px; background: var(--orange);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .network-badge-num { font-family: var(--font-display); font-size: 36px; font-weight: 800; color: var(--white); line-height: 1; }
+  .network-badge-txt { font-family: var(--font-display); font-size: 9px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.8); text-align: center; margin-top: 4px; }
+  .network-routes { margin-top: 32px; display: flex; flex-direction: column; gap: 0; }
+  .route-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 0; border-bottom: 1px solid var(--off);
+  }
+  .route-name { font-family: var(--font-display); font-size: 15px; font-weight: 700; text-transform: uppercase; color: var(--navy); letter-spacing: .04em; }
+  .route-freq { font-size: 12px; font-weight: 500; color: var(--mid); }
+  .route-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--orange);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(255,102,0,.4); } 50% { box-shadow: 0 0 0 8px rgba(255,102,0,0); } }
+
+  /* ─── CTA BANNER ─────────────────────────────────────────── */
+  .cta-banner {
+    position: relative; overflow: hidden;
+    background-image: url('https://images.unsplash.com/photo-1530521954074-e64f6810b32d?w=1800&auto=format&fit=crop&q=80');
+    background-size: cover; background-position: center;
+    padding: 100px 0; text-align: center;
+  }
+  .cta-banner::before { content: ''; position: absolute; inset: 0; background: rgba(0,20,46,.85); }
+  .cta-banner .container { position: relative; z-index: 1; }
+  .cta-banner .section-title { margin-bottom: 18px; }
+  .cta-banner p { font-size: 16px; font-weight: 300; color: rgba(255,255,255,.75); max-width: 560px; margin: 0 auto 36px; line-height: 1.7; }
+  .cta-actions { display: flex; justify-content: center; gap: 16px; }
+
+  /* ─── FOOTER ─────────────────────────────────────────────── */
+  .site-footer { background: var(--dark); padding: 80px 0 0; }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px;
+    padding-bottom: 64px; border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .footer-brand p { font-size: 14px; font-weight: 300; color: rgba(255,255,255,.5); line-height: 1.75; margin-top: 20px; margin-bottom: 28px; }
+  .footer-socials { display: flex; gap: 10px; }
+  .social-btn {
+    width: 36px; height: 36px; border: 1.5px solid rgba(255,255,255,.15);
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color .2s, background .2s;
+  }
+  .social-btn:hover { border-color: var(--orange); background: var(--orange); }
+  .footer-col h4 {
+    font-family: var(--font-display); font-size: 11px; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase; color: var(--orange);
+    margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul a { font-size: 13.5px; font-weight: 300; color: rgba(255,255,255,.55); transition: color .2s; }
+  .footer-col ul a:hover { color: var(--white); }
+  .footer-contact-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px; }
+  .footer-contact-item svg { flex-shrink: 0; margin-top: 2px; opacity: .6; }
+  .footer-contact-item span { font-size: 13.5px; font-weight: 300; color: rgba(255,255,255,.55); line-height: 1.55; }
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 0; font-size: 12px; color: rgba(255,255,255,.3);
+  }
+  .footer-bottom a { color: rgba(255,255,255,.3); transition: color .2s; }
+  .footer-bottom a:hover { color: var(--orange); }
+  .footer-cert { display: flex; gap: 16px; align-items: center; }
+  .cert-badge {
+    padding: 4px 10px; border: 1px solid rgba(255,255,255,.15);
+    font-size: 10px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: rgba(255,255,255,.4);
+  }
+
+  /* ─── SCROLL ANIMATIONS ──────────────────────────────────── */
+  [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  [data-reveal].revealed { opacity: 1; transform: translateY(0); }
+  [data-reveal="delay-1"] { transition-delay: .1s; }
+  [data-reveal="delay-2"] { transition-delay: .2s; }
+  [data-reveal="delay-3"] { transition-delay: .3s; }
+
+  /* ─── MOBILE ─────────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .main-nav, .header-cta .btn-primary { display: none; }
+    .hero-content { grid-template-columns: 1fr; }
+    .hero-form-card { max-width: 480px; }
+    .about-inner, .track-inner, .network-inner { grid-template-columns: 1fr; gap: 40px; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .presence-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .presence-cell:first-child { grid-row: auto; }
+  }
+  @media (max-width: 640px) {
+    .container { padding: 0 20px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .about-facts { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── TOP BAR ──────────────────────────────────────────────────────── -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-left">
+      <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="rgba(255,255,255,.6)"/></svg>
+      Julius Nyerere International Airport, Dar es Salaam, Tanzania
+      <div class="topbar-divider"></div>
+      <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" fill="rgba(255,255,255,.6)"/></svg>
+      cargo@lionaircargo.co.tz
+    </div>
+    <div class="topbar-right">
+      <a href="#">Client Portal</a>
+      <div class="topbar-divider"></div>
+      <a href="#">EN</a>
+      <a href="#">SW</a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── HEADER ───────────────────────────────────────────────────────── -->
+<header class="site-header" id="header">
+  <div class="container">
+    <div class="header-inner">
+      <!-- Logo -->
+      <a href="#" class="logo">
+        <div class="logo-mark">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+            <path d="M4 20L16 6l12 14" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 24h28M10 24l6-8 6 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-name">Lion Air Cargo</span>
+          <span class="logo-sub">Dar es Salaam · Tanzania</span>
+        </div>
+      </a>
+
+      <!-- Navigation -->
+      <nav class="main-nav" aria-label="Main navigation">
+        <!-- Services -->
+        <div class="nav-item">
+          <a class="nav-link" href="#">Services
+            <svg class="nav-chevron" width="11" height="7" fill="none" viewBox="0 0 12 8"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </a>
+          <div class="mega-menu">
+            <div class="mega-inner">
+              <div class="mega-col">
+                <div class="mega-col-title">Air Freight</div>
+                <div class="mega-links">
+                  <a href="#">International Air Cargo</a>
+                  <a href="#">Express Freight</a>
+                  <a href="#">Perishables & Cold Chain</a>
+                  <a href="#">Dangerous Goods</a>
+                </div>
+              </div>
+              <div class="mega-col">
+                <div class="mega-col-title">Ground & Sea</div>
+                <div class="mega-links">
+                  <a href="#">Road Freight</a>
+                  <a href="#">Sea Freight</a>
+                  <a href="#">Cross-Border Logistics</a>
+                  <a href="#">Last-Mile Delivery</a>
+                </div>
+              </div>
+              <div class="mega-col">
+                <div class="mega-col-title">Warehousing</div>
+                <div class="mega-links">
+                  <a href="#">Bonded Warehousing</a>
+                  <a href="#">Distribution</a>
+                  <a href="#">Customs Clearance</a>
+                  <a href="#">Project Cargo</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Industries -->
+        <div class="nav-item">
+          <a class="nav-link" href="#">Industries
+            <svg class="nav-chevron" width="11" height="7" fill="none" viewBox="0 0 12 8"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </a>
+          <div class="mega-menu">
+            <div class="mega-inner">
+              <div class="mega-col">
+                <div class="mega-col-title">Sectors</div>
+                <div class="mega-links">
+                  <a href="#">Mining & Resources</a>
+                  <a href="#">Oil & Gas</a>
+                  <a href="#">Pharmaceuticals</a>
+                  <a href="#">Agriculture</a>
+                </div>
+              </div>
+              <div class="mega-col">
+                <div class="mega-col-title">Trade</div>
+                <div class="mega-links">
+                  <a href="#">Retail & eCommerce</a>
+                  <a href="#">Automotive</a>
+                  <a href="#">Industrial Equipment</a>
+                  <a href="#">Electronics</a>
+                </div>
+              </div>
+              <div class="mega-col">
+                <div class="mega-col-title">Specialised</div>
+                <div class="mega-links">
+                  <a href="#">Humanitarian Aid</a>
+                  <a href="#">Diplomatic Cargo</a>
+                  <a href="#">Events & Exhibitions</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a class="nav-link" href="#">Network</a>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="#">About Us</a>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="#">News</a>
+        </div>
+      </nav>
+
+      <!-- Header CTAs -->
+      <div class="header-cta">
+        <a class="track-btn" href="#track">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/></svg>
+          Track Shipment
+        </a>
+        <a class="btn-primary" href="#quote">Get a Quote</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ─── HERO ──────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-stripe"></div>
+
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span>Africa's Premier Cargo Partner</span>
+      </div>
+      <h1 class="hero-headline">
+        Moving Africa<br><em>Forward,</em><br>Worldwide.
+      </h1>
+      <p class="hero-sub">From Julius Nyerere International to every corner of the globe — Lion Air Cargo delivers speed, reliability, and total supply chain visibility.</p>
+      <div class="hero-actions">
+        <a href="#quote" class="btn-primary">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Request a Quote
+        </a>
+        <a href="#services" class="btn-ghost">Explore Services</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">47+</div>
+          <div class="hero-stat-lbl">Destinations</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">98%</div>
+          <div class="hero-stat-lbl">On-Time Rate</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">14yr</div>
+          <div class="hero-stat-lbl">Experience</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Quote Form -->
+    <div class="hero-form-card" id="quote">
+      <div id="quoteForm">
+        <div class="form-title">Quick Quote</div>
+        <p class="form-subtitle">Get a competitive rate in under 60 minutes</p>
+
+        <div class="form-row">
+          <label>Origin</label>
+          <input type="text" placeholder="City or Airport Code" />
+        </div>
+        <div class="form-row">
+          <label>Destination</label>
+          <input type="text" placeholder="City or Airport Code" />
+        </div>
+        <div class="form-row-half">
+          <div class="form-row">
+            <label>Weight (kg)</label>
+            <input type="number" placeholder="0.00" min="0" />
+          </div>
+          <div class="form-row">
+            <label>Service Type</label>
+            <select>
+              <option value="">Select…</option>
+              <option>Air Freight</option>
+              <option>Express Air</option>
+              <option>Road Freight</option>
+              <option>Sea Freight</option>
+              <option>Warehousing</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-primary form-submit" id="quoteSubmit" onclick="submitQuote()">
+          <span id="submitText">Submit Request</span>
+          <div class="spinner" id="submitSpinner"></div>
+        </button>
+      </div>
+
+      <div class="form-success" id="quoteSuccess">
+        <div class="form-success-icon">✅</div>
+        <h3>Quote Request Received</h3>
+        <p>Our Dar es Salaam team will contact you within <strong>60 minutes</strong> with a competitive quote tailored to your shipment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TICKER ────────────────────────────────────────────────────────── -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="ticker">
+    <span>Air Freight</span>
+    <span>Ground Logistics</span>
+    <span>Customs Clearance</span>
+    <span>Cold Chain</span>
+    <span>Project Cargo</span>
+    <span>Warehousing</span>
+    <span>Express Delivery</span>
+    <span>Cross-Border</span>
+    <span>Air Freight</span>
+    <span>Ground Logistics</span>
+    <span>Customs Clearance</span>
+    <span>Cold Chain</span>
+    <span>Project Cargo</span>
+    <span>Warehousing</span>
+    <span>Express Delivery</span>
+    <span>Cross-Border</span>
+  </div>
+</div>
+
+<!-- ─── ABOUT STRIP ───────────────────────────────────────────────────── -->
+<section class="about-strip">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-copy" data-reveal>
+        <span class="section-label">Who We Are</span>
+        <h2 class="section-title light">East Africa's<br>Logistics Backbone</h2>
+        <p>Founded in Dar es Salaam, Lion Air Cargo has grown from a regional freight forwarder into a full-service logistics partner connecting Tanzania, East Africa, and the world. We combine local expertise with global reach to deliver seamless, door-to-door cargo solutions.</p>
+        <a href="#" class="btn-ghost">Our Story</a>
+      </div>
+      <div class="about-facts" data-reveal data-reveal="delay-2">
+        <div class="about-fact">
+          <div class="fact-num">47+</div>
+          <div class="fact-lbl">Global Destinations</div>
+        </div>
+        <div class="about-fact">
+          <div class="fact-num">12K</div>
+          <div class="fact-lbl">Tonnes Shipped / yr</div>
+        </div>
+        <div class="about-fact">
+          <div class="fact-num">98%</div>
+          <div class="fact-lbl">On-Time Delivery</div>
+        </div>
+        <div class="about-fact">
+          <div class="fact-num">24/7</div>
+          <div class="fact-lbl">Operations Centre</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ──────────────────────────────────────────────────────── -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header">
+      <div data-reveal>
+        <span class="section-label">What We Do</span>
+        <h2 class="section-title">Our Services</h2>
+      </div>
+      <a href="#" class="btn-primary" data-reveal data-reveal="delay-2">View All Services</a>
+    </div>
+
+    <div class="services-grid">
+      <!-- Air Freight -->
+      <div class="service-card" data-reveal>
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?w=700&auto=format&fit=crop&q=80" alt="Cargo aircraft on tarmac" loading="lazy" />
+        </div>
+        <div class="service-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+              <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/>
+              <path d="M17 2l-5 8-5-8M2 14h20"/>
+            </svg>
+          </div>
+          <div class="service-name">Air Freight</div>
+          <p class="service-desc">High-priority shipments handled with precision. From Julius Nyerere International to over 47 global hubs, with real-time tracking and IATA-certified handling.</p>
+          <a href="#" class="service-link">Learn More →</a>
+        </div>
+        <div class="service-orange-bar"></div>
+      </div>
+
+      <!-- Ground Logistics -->
+      <div class="service-card" data-reveal data-reveal="delay-1">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=700&auto=format&fit=crop&q=80" alt="Logistics trucks and ground transport" loading="lazy" />
+        </div>
+        <div class="service-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+              <rect x="1" y="3" width="15" height="13" rx="1"/>
+              <path d="M16 8h4l3 5v4h-7V8z"/>
+              <circle cx="5.5" cy="18.5" r="2.5"/>
+              <circle cx="18.5" cy="18.5" r="2.5"/>
+            </svg>
+          </div>
+          <div class="service-name">Ground Logistics</div>
+          <p class="service-desc">Seamless road freight across Tanzania and the East African corridor — Kenya, Uganda, Rwanda, Zambia, and beyond. GPS-tracked fleets, 24/7 operations.</p>
+          <a href="#" class="service-link">Learn More →</a>
+        </div>
+        <div class="service-orange-bar"></div>
+      </div>
+
+      <!-- Warehousing -->
+      <div class="service-card" data-reveal data-reveal="delay-2">
+        <div class="service-img">
+          <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=700&auto=format&fit=crop&q=80" alt="Modern logistics warehouse" loading="lazy" />
+        </div>
+        <div class="service-body">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <div class="service-name">Warehousing</div>
+          <p class="service-desc">State-of-the-art bonded and general warehousing facilities in Dar es Salaam. Temperature-controlled zones, inventory management, and customs clearance on-site.</p>
+          <a href="#" class="service-link">Learn More →</a>
+        </div>
+        <div class="service-orange-bar"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY US ─────────────────────────────────────────────────────────── -->
+<section class="why">
+  <div class="container">
+    <div style="text-align:center; margin-bottom: 0;" data-reveal>
+      <span class="section-label">Our Advantage</span>
+      <h2 class="section-title">Why Lion Air Cargo</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-feature" data-reveal>
+        <div class="why-num">01</div>
+        <div class="why-title">Real-Time Visibility</div>
+        <p class="why-text">Track every shipment from pickup to delivery through our digital platform. Live GPS, milestone alerts, and electronic proof of delivery — all in one dashboard.</p>
+      </div>
+      <div class="why-feature" data-reveal data-reveal="delay-1">
+        <div class="why-num">02</div>
+        <div class="why-title">African Expertise</div>
+        <p class="why-text">14 years of navigating East African logistics complexities — customs regulations, infrastructure, cross-border protocols. Our local knowledge is your competitive edge.</p>
+      </div>
+      <div class="why-feature" data-reveal data-reveal="delay-2">
+        <div class="why-num">03</div>
+        <div class="why-title">Speed & Reliability</div>
+        <p class="why-text">A 98% on-time delivery record backed by strategic airline partnerships, priority cargo allocations, and a dedicated ops centre running 24 hours a day.</p>
+      </div>
+      <div class="why-feature" data-reveal data-reveal="delay-3">
+        <div class="why-num">04</div>
+        <div class="why-title">Compliance & Security</div>
+        <p class="why-text">IATA-certified, TANCIS-registered, and ISO 9001 compliant. Your cargo is handled to international standards with full chain-of-custody documentation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TRACK & TRACE ────────────────────────────────────────────────── -->
+<section class="track-section" id="track">
+  <div class="container">
+    <div class="track-inner">
+      <div class="track-copy" data-reveal>
+        <span class="section-label" style="color: rgba(255,255,255,.5)">Shipment Tracking</span>
+        <h2 class="section-title light">Track Your<br>Cargo Live</h2>
+        <p>Enter your Air Waybill (AWB) or booking reference below for instant shipment status, location history, and estimated arrival.</p>
+        <div class="track-form">
+          <input type="text" placeholder="Enter AWB or Booking Reference…" id="trackInput" />
+          <button class="btn-primary" onclick="handleTrack()">Track →</button>
+        </div>
+        <div id="trackResult" style="margin-top:16px; font-size:13px; color:rgba(255,255,255,.6);"></div>
+      </div>
+      <div data-reveal data-reveal="delay-2">
+        <img src="https://images.unsplash.com/photo-1542296332-2e4473faf563?w=800&auto=format&fit=crop&q=80" alt="Air cargo tracking operations" style="width:100%; height:380px; object-fit:cover;" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── GALLERY / PRESENCE ────────────────────────────────────────────── -->
+<section class="presence">
+  <div class="container">
+    <div data-reveal>
+      <span class="section-label">Our Operations</span>
+      <h2 class="section-title">On the Ground<br>in East Africa</h2>
+    </div>
+    <div class="presence-grid">
+      <div class="presence-cell">
+        <img src="https://images.unsplash.com/photo-1531410569299-9e97f9f1f2b7?w=900&auto=format&fit=crop&q=80" alt="Dar es Salaam port aerial view" loading="lazy" />
+        <div class="presence-cell-label"><span>Dar es Salaam Port</span></div>
+      </div>
+      <div class="presence-cell">
+        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&auto=format&fit=crop&q=80" alt="Cargo warehouse interior" loading="lazy" />
+        <div class="presence-cell-label"><span>Bonded Warehouse</span></div>
+      </div>
+      <div class="presence-cell">
+        <img src="https://images.unsplash.com/photo-1580902394724-b08ff4fb3e26?w=600&auto=format&fit=crop&q=80" alt="Airport cargo operations" loading="lazy" />
+        <div class="presence-cell-label"><span>JNIA Cargo Terminal</span></div>
+      </div>
+      <div class="presence-cell">
+        <img src="https://images.unsplash.com/photo-1624953587687-daf255b6b80a?w=600&auto=format&fit=crop&q=80" alt="Ground crew loading aircraft" loading="lazy" />
+        <div class="presence-cell-label"><span>Ramp Handling</span></div>
+      </div>
+      <div class="presence-cell">
+        <img src="https://images.unsplash.com/photo-1565022536102-f7645c84354a?w=600&auto=format&fit=crop&q=80" alt="Logistics warehouse staff" loading="lazy" />
+        <div class="presence-cell-label"><span>Distribution Centre</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── NETWORK ───────────────────────────────────────────────────────── -->
+<section class="network">
+  <div class="container">
+    <div class="network-inner">
+      <div class="network-img" data-reveal>
+        <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800&auto=format&fit=crop&q=80" alt="Cargo aircraft aerial view" loading="lazy" />
+        <div class="network-badge">
+          <div class="network-badge-num">47+</div>
+          <div class="network-badge-txt">Routes Served</div>
+        </div>
+      </div>
+      <div data-reveal data-reveal="delay-2">
+        <span class="section-label">Route Network</span>
+        <h2 class="section-title">Key Air Routes<br>from Dar es Salaam</h2>
+        <div class="network-routes">
+          <div class="route-row">
+            <span class="route-name">DAR → Dubai (DXB)</span>
+            <span class="route-freq">Daily</span>
+            <div class="route-dot"></div>
+          </div>
+          <div class="route-row">
+            <span class="route-name">DAR → London (LHR)</span>
+            <span class="route-freq">5× weekly</span>
+            <div class="route-dot"></div>
+          </div>
+          <div class="route-row">
+            <span class="route-name">DAR → Nairobi (NBO)</span>
+            <span class="route-freq">Multiple daily</span>
+            <div class="route-dot"></div>
+          </div>
+          <div class="route-row">
+            <span class="route-name">DAR → Johannesburg (JNB)</span>
+            <span class="route-freq">Daily</span>
+            <div class="route-dot"></div>
+          </div>
+          <div class="route-row">
+            <span class="route-name">DAR → Addis Ababa (ADD)</span>
+            <span class="route-freq">4× weekly</span>
+            <div class="route-dot"></div>
+          </div>
+          <div class="route-row">
+            <span class="route-name">DAR → Shanghai (PVG)</span>
+            <span class="route-freq">3× weekly</span>
+            <div class="route-dot"></div>
+          </div>
+        </div>
+        <a href="#" class="btn-primary" style="margin-top:32px;">View Full Network</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA BANNER ────────────────────────────────────────────────────── -->
+<section class="cta-banner">
+  <div class="container">
+    <span class="section-label">Ready to Ship?</span>
+    <h2 class="section-title light" data-reveal>Partner with East Africa's<br>Cargo Specialists</h2>
+    <p data-reveal>Whether you're moving a single urgent shipment or managing a full supply chain, Lion Air Cargo has the network, expertise, and technology to deliver.</p>
+    <div class="cta-actions" data-reveal>
+      <a href="#quote" class="btn-primary">Get a Quote</a>
+      <a href="tel:+255222000000" class="btn-ghost">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.05 1.21 2 2 0 012.03 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Call Our Team
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-mark">
+            <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+              <path d="M4 20L16 6l12 14" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 24h28M10 24l6-8 6 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <span class="logo-name" style="color:white;">Lion Air Cargo</span>
+            <span class="logo-sub">Dar es Salaam · Tanzania</span>
+          </div>
+        </a>
+        <p>Connecting Tanzania and East Africa to the world. Over 14 years of trusted freight solutions, delivered on time, every time.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn" aria-label="LinkedIn">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" stroke="white" stroke-width="1.8"/><circle cx="4" cy="4" r="2" stroke="white" stroke-width="1.8"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Twitter">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Facebook">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Air Freight</a></li>
+          <li><a href="#">Express Freight</a></li>
+          <li><a href="#">Road Logistics</a></li>
+          <li><a href="#">Sea Freight</a></li>
+          <li><a href="#">Warehousing</a></li>
+          <li><a href="#">Customs Clearance</a></li>
+          <li><a href="#">Project Cargo</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Network</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">News & Media</a></li>
+          <li><a href="#">Certifications</a></li>
+          <li><a href="#">Client Portal</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-contact-item">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="rgba(255,255,255,.5)"/></svg>
+          <span>Cargo House, Julius Nyerere Rd<br>Dar es Salaam, Tanzania</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.05 1.21 2 2 0 012.03 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z" stroke="rgba(255,255,255,.5)" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span>+255 22 200 0000</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="rgba(255,255,255,.5)" stroke-width="1.8"/><polyline points="22,6 12,13 2,6" stroke="rgba(255,255,255,.5)" stroke-width="1.8"/></svg>
+          <span>cargo@lionaircargo.co.tz</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,.5)" stroke-width="1.8"/><polyline points="12 6 12 12 16 14" stroke="rgba(255,255,255,.5)" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span>Operations: 24 / 7 / 365</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2025 Lion Air Cargo Ltd. All rights reserved.</span>
+      <div class="footer-cert">
+        <div class="cert-badge">IATA</div>
+        <div class="cert-badge">ISO 9001</div>
+        <div class="cert-badge">TANCIS</div>
+      </div>
+      <div style="display:flex; gap:20px;">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── JAVASCRIPT ─────────────────────────────────────────────────────── -->
+<script>
+  /* ── Sticky header shadow ── */
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  /* ── Scroll reveal ── */
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); revealObserver.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  /* ── Quote form ── */
+  function submitQuote() {
+    const btn = document.getElementById('quoteSubmit');
+    const txt = document.getElementById('submitText');
+    const spinner = document.getElementById('submitSpinner');
+
+    // Validate
+    const inputs = document.querySelectorAll('#quoteForm input, #quoteForm select');
+    let valid = true;
+    inputs.forEach(i => {
+      if (!i.value.trim()) {
+        i.style.borderColor = '#FF6600';
+        valid = false;
+      } else {
+        i.style.borderColor = '';
+      }
+    });
+    if (!valid) return;
+
+    // Processing state
+    btn.disabled = true;
+    txt.style.display = 'none';
+    spinner.style.display = 'block';
+
+    setTimeout(() => {
+      document.getElementById('quoteForm').style.display = 'none';
+      const success = document.getElementById('quoteSuccess');
+      success.style.display = 'block';
+      success.style.animation = 'slideUp .5s var(--ease) both';
+    }, 2200);
+  }
+
+  /* ── Track shipment ── */
+  function handleTrack() {
+    const val = document.getElementById('trackInput').value.trim();
+    const result = document.getElementById('trackResult');
+    if (!val) {
+      result.textContent = '⚠ Please enter a valid AWB or booking reference.';
+      result.style.color = 'rgba(255,102,0,.8)';
+      return;
+    }
+    result.textContent = '⏳ Looking up shipment ' + val + '…';
+    result.style.color = 'rgba(255,255,255,.6)';
+    setTimeout(() => {
+      result.innerHTML = '✅ <strong style="color:#fff">' + val + '</strong> — In Transit · Departed NBO · ETA Dar es Salaam: <strong style="color:#FF6600">Today 18:40 EAT</strong>';
+    }, 1800);
+  }
+
+  /* ── Enter key on track input ── */
+  document.getElementById('trackInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleTrack();
+  });
+</script>
+</body>
+</html>
